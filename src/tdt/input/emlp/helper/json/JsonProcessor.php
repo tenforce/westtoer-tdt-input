@@ -20,12 +20,22 @@ class JsonProcessor implements \tdt\json\JSONChunkProcessor{
         if(!empty($ar)){
             foreach($ar as $k => $v) {
                 if(is_array($v)){
+
+                    if (is_int($k)) {
+                        $k++;
+                    }
                     $prefix = $k;
                     $flat = $this->flatten($v);
+
                     foreach($flat as $fkey => $fval){
                         $new[$prefix . "_" . $fkey] = $fval;
                     }
                 }else{
+
+                    if (is_int($k)) {
+                        $k++;
+                    }
+
                     $new[$k] = $v;
                 }
             }
