@@ -147,7 +147,7 @@ class JobExecuter
 
         $model_name = rtrim($model_name, '\\');
 
-        $executer = 'Tdt\\Input\\Emlp\\' . $model_name;
+        $executer = 'Tdt\\Input\\EMLP\\' . $model_name;
 
         if (!class_exists($executer)) {
 
