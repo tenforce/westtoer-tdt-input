@@ -134,7 +134,20 @@ class JobExecuter
             return $model;
         }
 
-        $executer = 'Tdt\\Input\\Emlp\\' . get_class($model);
+        $class = get_class($model);
+
+        $pieces = explode('\\', $class);
+
+        // Convert the model name to ucfirst namespace conventions
+        $model_name = '';
+
+        foreach ($pieces as $class_piece) {
+            $model_name .= ucfirst($class_piece) . '\\';
+        }
+
+        $model_name = rtrim($model_name, '\\');
+
+        $executer = 'Tdt\\Input\\Emlp\\' . $model_name;
 
         if (!class_exists($executer)) {
 
