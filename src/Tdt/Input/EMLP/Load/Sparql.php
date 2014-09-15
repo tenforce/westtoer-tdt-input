@@ -14,7 +14,6 @@ class Sparql extends ALoader
 
     public function __construct($model, $command)
     {
-
         parent::__construct($model, $command);
     }
 
@@ -179,12 +178,13 @@ class Sparql extends ALoader
      */
     private function createInsertQuery($triples)
     {
-
         $graph_id = $this->graph->graph_id;
 
         $query = "INSERT DATA INTO <$graph_id> {";
         $query .= $triples;
         $query .= ' }';
+
+        $this->log("The insert query that has been made is: " . $query);
 
         return $query;
     }
@@ -326,7 +326,6 @@ class Sparql extends ALoader
      */
     private function deleteOldGraphs()
     {
-
         $graph_name = $this->graph->graph_name;
 
         $this->log("Before attaching the new graph, detaching and removing the old one, and possible zombie graphs");
