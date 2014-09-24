@@ -340,6 +340,8 @@ class Sparql extends ALoader
                 if ($graph_name != $this->graph->graph_id) {
 
                     $query = "CLEAR GRAPH <$graph_name>";
+                    
+                    $this->log("Removing graph with statement: " . $query);
 
                     $result = $this->performQuery($query);
 
