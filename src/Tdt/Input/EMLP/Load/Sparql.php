@@ -237,12 +237,13 @@ class Sparql extends ALoader
             CURLOPT_CUSTOMREQUEST => $method,
             CURLOPT_HEADER => 0,
             CURLOPT_URL => $url,
-            CURLOPT_HTTPAUTH => CURLAUTH_ANY,
+            CURLOPT_HTTPAUTH => CURLAUTH_DIGEST,
             CURLOPT_USERPWD => $this->loader->user . ":" . $this->loader->password,
             CURLOPT_FRESH_CONNECT => 1,
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_FORBID_REUSE => 1,
             CURLOPT_TIMEOUT => 4,
+            
         );
 
         // Get curl handle and initiate the request
