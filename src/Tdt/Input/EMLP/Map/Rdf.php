@@ -39,6 +39,11 @@ class Rdf extends AMapper
         $rest_uri = substr($base_uri, 0, $pos);
         $mapping_file = str_replace('tdt:package', $rest_uri, $mapping_file);
 
+        // Replace the tdt:
+        $pos = strrpos($base_uri, '/');
+        $rest_uri = substr($base_uri, 0, $pos);
+        $mapping_file = str_replace('tdt:', $rest_uri, $mapping_file);
+
         // TODO make the type a variable in the model
         $mapping_type = "Vertere";
 
