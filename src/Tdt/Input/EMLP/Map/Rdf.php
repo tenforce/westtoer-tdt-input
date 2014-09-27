@@ -42,7 +42,15 @@ class Rdf extends AMapper
         // Replace the tdt:
         $pos = strrpos($base_uri, '/');
         $rest_uri = substr($base_uri, 0, $pos);
-        $mapping_file = str_replace('tdt:', $rest_uri, $mapping_file);
+
+        // Get the fqdn from the url
+        $pieces = parse_url($base_uri);
+
+        if (!empty($pieces['scheme']) && !empty($pieces['host'])) {
+            $mapping_file = str_replace('tdt:', $pieces['scheme'] . '://' . $pieces['host'], $mapping_file);
+        } else {
+            $this->log("Could not retrieve the protocol and host from the uri ( $base_uri ).");
+        }
 
         // TODO make the type a variable in the model
         $mapping_type = "Vertere";
