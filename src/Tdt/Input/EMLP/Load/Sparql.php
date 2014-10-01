@@ -245,7 +245,7 @@ class Sparql extends ALoader
             CURLOPT_TIMEOUT => 10,
             CURLOPT_SSL_VERIFYPEER => 0,
             CURLOPT_SSL_VERIFYHOST => 0,
-            
+
         );
 
         // Get curl handle and initiate the request
@@ -279,7 +279,9 @@ class Sparql extends ALoader
     {
         $current_graph = $this->graph->graph_id;
 
-        $query = "SELECT DISTINCT ?g WHERE { GRAPH ?g { ?s ?p ?o. filter regex(?g, \"$graph_name\", \"i\"). filter (?g != \"$current_graph\") } }";
+        $graph_name_pattern = $graph_name . '#';
+
+        $query = "SELECT DISTINCT ?g WHERE { GRAPH ?g { ?s ?p ?o. filter regex(?g, \"$graph_name_pattern\", \"i\"). filter (?g != \"$current_graph\") } }";
 
         $this->log("Fetching all the graphs starting with the name: " . $this->graph->graph_name);
 
@@ -343,7 +345,7 @@ class Sparql extends ALoader
                 if ($graph_name != $this->graph->graph_id) {
 
                     $query = "CLEAR GRAPH <$graph_name>";
-                    
+
                     $this->log("Removing graph with statement: " . $query);
 
                     $result = $this->performQuery($query);
