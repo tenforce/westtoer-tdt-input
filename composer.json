@@ -5,9 +5,14 @@
         "php": ">=5.3.0",
         "illuminate/support": "4.1.*",
         "tdt/streamingrdfmapper": "1.0.0",
-        "tdt/json" : "dev-master",
-        "semsol/arc2" : "dev-master#5e0701da09d74ef3813e15bc67e4e27b212e816c"
+        "tdt/json" : "dev-master"
     },
+    "repositories" : [
+        {
+            "type":"vcs",
+            "url" : "https://github.com/coreation/arc2"
+        }
+    ],
     "require-dev": {
         "mockery/mockery" : "dev-master",
         "phpunit/phpunit" : "4.0.*"

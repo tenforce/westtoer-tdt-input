@@ -98,7 +98,6 @@ class Sparql extends ALoader
             $ser = \ARC2::getNTriplesSerializer();
 
             $arc_parser->parse('', $ttl);
-
             $triples = $ser->getSerializedTriples($arc_parser->getTriples());
 
             preg_match_all("/(<.*\.)/", $triples, $matches);
@@ -197,7 +196,6 @@ class Sparql extends ALoader
      */
     private function serialize($triples)
     {
-
         $serialized_triples = preg_replace_callback(
             '/(?:\\\\u[0-9a-fA-Z]{4})+/',
             function ($v) {
